@@ -1,0 +1,26 @@
+/* components/song-iten-v1/song-item-v1.wxss */
+  
+.singlist{
+  display: flex;
+  position: relative;
+  margin: 15px 0px;
+}
+.singlist .image{
+  border-radius: 10px;
+  width: 150rpx;
+  height: 150rpx;
+}
+.singlist .info{
+  font-size: 16px;
+  padding: 10px 5px;
+}
+.singlist .singer{
+padding-top:15px ;
+color: rgb(182, 177, 177);
+font-size: 12px;
+}
+.singlist .arrow{
+  position: absolute;
+  top: 25px;
+  right: 15px;
+}
