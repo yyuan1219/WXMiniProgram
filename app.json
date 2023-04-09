@@ -4,7 +4,8 @@
     "pages/main-video/mian-video",
     "pages/detail-video/detail-video",
     "pages/detail-search/detail-search",
-    "pages/detail-song/detail-song"
+    "pages/detail-song/detail-song",
+    "pages/datail-menu/datail-menu"
   ],
   "window": {
     "backgroundTextStyle": "dark",

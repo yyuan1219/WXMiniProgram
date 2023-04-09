@@ -21,6 +21,13 @@
           "query": "id=14614970",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "更多视频",
+          "pathName": "pages/datail-menu/datail-menu",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

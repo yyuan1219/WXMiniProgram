@@ -22,6 +22,13 @@ Component({
     attached(){
       this.ScreenWidth=App.globalData.ScreenWidth
     }
+  },
+  methods:{
+    onRecommenMoreClick(){
+      wx.navigateTo({
+        url: '/pages/datail-menu/datail-menu',
+      })
+    }
   }
   
 })
