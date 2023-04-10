@@ -6,6 +6,8 @@ import {
 import querySelect from "../../utils/query-select"
 import throttle from '../../utils/throttle'
 import recommendStore from '../../store/recommendStore'
+import rangkingStore from '../../store/rangkingStore'
+
 // import {
 //   throttle
 // } from 'underscore'
@@ -19,19 +21,25 @@ Page({
     recommendSongs: [],
     // 歌单数据
     hotMenuList: [],
-    recMenuList:[],
+    recMenuList: [],
+    rankingInfos:{
+      newRanking: {},
+      originRanking: {},
+      upRanking: {}
+    },
+    
     ScreenWidth: 375
   },
   onLoad() {
     this.fetchMusicBanner()
-    // this.fetchRecommendSongs()
     this.fetchSongMenuList()
-    recommendStore.onState("recommendSongs", (value) => {
-      this.setData({
-        recommendSongs: value.slice(0, 6)
-      })
-    })
+    recommendStore.onState("recommendSongs", this.getrecommendSongs)
+    rangkingStore.onState("originRanking", this.handleOriginRanking)
+    rangkingStore.onState("newRanking", this.handleNewRanking)
+    rangkingStore.onState("upRanking", this.handleUpRanking)
+
     recommendStore.dispatch("fetchRecommendSongsAction")
+    rangkingStore.dispatch("fetchRangkingDataAction")
 
     // 获取屏幕尺寸
     this.setData({
@@ -87,6 +95,30 @@ Page({
       })
     })
   },
+  getrecommendSongs(value) {
+    this.setData({
+      recommendSongs: value.slice(0, 6)
+    })
+  },
+  handleOriginRanking(value) {
+    const newRankingInfos={ ...this.data.rankingInfos,newRanking:value}
+    this.setData({rankingInfos:newRankingInfos})
+  },
+  handleNewRanking(value) {
+    const newRankingInfos={ ...this.data.rankingInfos,originRanking:value}
+    this.setData({rankingInfos:newRankingInfos})
+  },
+  handleUpRanking(value) {
+    const newRankingInfos={ ...this.data.rankingInfos,upRanking:value}
+    this.setData({rankingInfos:newRankingInfos})
+  },
+  onUnload(){
+    recommendStore.offState("recommendSongs",this.getrecommendSongs)
+    rangkingStore.offState("newRanking",this.handleNewRanking)
+    rangkingStore.offState("originRanking",this.handleoriginRanking)
+    rangkingStore.offState("upRanking",this.handleupRanking)
+
+  }
   
 
 })
